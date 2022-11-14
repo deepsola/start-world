@@ -3,13 +3,13 @@ on: [push]
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: A job to launch OneTest test
     steps:
-      - name: Hello world action step
-        id: hello
+      - name: OneTest action step
+        id: configASK
         uses: deepsola/onetest-action@v1
         with:
-          who-to-greet: 'deepsola'
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+          ask-config: "${{ secrets.ASK_CONFIG }}"
+      # Use the output from the `configASK` step
+      - name: Get the output pods
+        run: echo "The pods was ${{ steps.configASK.outputs.pods }}"
