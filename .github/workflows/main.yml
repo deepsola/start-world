@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: deepsola/onetest-actionv1
+        uses: deepsola/onetest-action@v1
         with:
           who-to-greet: 'deepsola'
       # Use the output from the `hello` step
