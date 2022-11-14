@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: OneTest action step
         id: configASK
-        uses: deepsola/onetest-action@v1.02
+        uses: deepsola/onetest-action@v1.03
         with:
           ask-config: "${{ secrets.ASK_CONFIG }}"
       # Use the output from the `configASK` step
