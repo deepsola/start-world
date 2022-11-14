@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: OneTest action step
         id: configASK
-        uses: deepsola/onetest-action@v1.08
+        uses: deepsola/onetest-action@v0.0.1
         with:
           ask-config: "${{ secrets.ASK_CONFIG }}"
           version: "1.0.0"
