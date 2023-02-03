@@ -5,13 +5,27 @@ on:
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
-    name: A job to launch test
+    name: A job to hello world
     steps:
       - name: Generate step summary
         run: |
           echo "This is the lead in sentence for the list" >> $GITHUB_STEP_SUMMARY
-          echo "![](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
           echo "- Lets add a bullet point" >> $GITHUB_STEP_SUMMARY
           echo "- Lets add a second bullet point" >> $GITHUB_STEP_SUMMARY
           echo "- How about a third one?" >> $GITHUB_STEP_SUMMARY
+
+  hello_github_job:
+    runs-on: ubuntu-latest
+    name: A job to hello github
+    strategy:
+      matrix:
+        word: ["a", "b", "c"]
+    steps:
+      - name: Generate step summary
+        run: |
+          echo "This is the lead in sentence for the list" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
+          echo "- Lets add a bullet point" >> $GITHUB_STEP_SUMMARY
+          echo "- Lets add a second bullet point" >> $GITHUB_STEP_SUMMARY
+          echo "- How about a third one ${{ matrix.base-image }}?" >> $GITHUB_STEP_SUMMARY
