@@ -5,10 +5,19 @@ on:
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
-    name: A job to launch OneTest test
+    name: A job to launch test
     steps:
-      - uses: deepsola/onetest-action@v0.2.6
-        name: Try
-        with:
-          action: "try"
-          ask-config: "${{ secrets.ASK_CONFIG }}"
+      - name: Generate step summary
+        run: |
+          echo "This is the lead in sentence for the list" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
+          echo "- Lets add a bullet point" >> $GITHUB_STEP_SUMMARY
+          echo "- Lets add a second bullet point" >> $GITHUB_STEP_SUMMARY
+          echo "- How about a third one?" >> $GITHUB_STEP_SUMMARY
+      - name: Generate job summary
+        run: |
+          echo "This is the lead in sentence for the list" >> $GITHUB_JOB_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
+          echo "- Lets add a bullet point" >> $GITHUB_JOB_SUMMARY
+          echo "- Lets add a second bullet point" >> $GITHUB_JOB_SUMMARY
+          echo "- How about a third one?" >> $GITHUB_JOB_SUMMARY
