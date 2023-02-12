@@ -6,6 +6,10 @@ on:
       - main
 
 jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo step1
   call-workflow:
     uses: ./.github/workflows/B.yml
     secrets: inherit
