@@ -1,0 +1,13 @@
+name: Second
+
+on:
+  workflow_run:
+    workflows: ["First"]
+    types:
+      - completed
+
+jobs:
+  test2:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 2
