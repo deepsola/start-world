@@ -1,0 +1,11 @@
+name: Call a reusable workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  call-workflow:
+    uses: deepsola/start-world/.github/workflows/B.yml@main
+    secrets: inherit
