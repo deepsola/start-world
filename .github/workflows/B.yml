@@ -3,7 +3,7 @@ name: Reusable workflow example
 on:
   workflow_call:
     secrets:
-      ASK_CONFIG:
+      token:
         required: true
 
 jobs:
@@ -16,4 +16,4 @@ jobs:
         name: test secrets
         with:
           action: "try"
-          ask-config: "${{ secrets.ASK_CONFIG }}"
+          ask-config: "${{ secrets.token }}"
