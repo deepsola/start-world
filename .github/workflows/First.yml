@@ -1,0 +1,12 @@
+name: First
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo 1
