@@ -3,13 +3,17 @@ name: Reusable workflow example
 on:
   workflow_call:
     secrets:
-      token:
+      ASK_CONFIG:
         required: true
 
 jobs:
-  triage:
+  test2:
+    name: test
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
-    - uses: actions/labeler@v4
-      with:
-        repo-token: ${{ secrets.token }}
+      - uses: alibaba/cloud-native-test-ci-tool@v0.0.1
+        name: test secrets
+        with:
+          action: "try"
+          ask-config: "${{ secrets.ASK_CONFIG }}"
