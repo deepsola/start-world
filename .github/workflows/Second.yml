@@ -10,4 +10,6 @@ jobs:
   test2:
     runs-on: ubuntu-latest
     steps:
-      - run: echo 2
+    - uses: actions/labeler@v4
+      with:
+        repo-token: ${{ secrets.token }}
