@@ -12,4 +12,5 @@ jobs:
       - run: echo step1
   call-workflow:
     uses: ./.github/workflows/B.yml
-    secrets: inherit
+    secrets:
+      token: ${{ secrets.ASK_CONFIG }}
