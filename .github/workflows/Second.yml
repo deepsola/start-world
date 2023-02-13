@@ -8,8 +8,12 @@ on:
 
 jobs:
   test2:
+    name: test
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
-    - uses: actions/labeler@v4
-      with:
-        repo-token: ${{ secrets.token }}
+      - uses: alibaba/cloud-native-test-ci-tool@v0.0.1
+        name: Deploy rocketmq
+        with:
+          action: "try"
+          ask-config: "${{ secrets.ASK_CONFIG }}"
