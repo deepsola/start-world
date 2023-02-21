@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
-      - uses: "alibaba/cloud-native-test-ci-tool@7177befdd932d6e0275607826d9a70a874b3b5c7"
+      - uses: 'alibaba/cloud-native-test-ci-tool@7177befdd932d6e0275607826d9a70a874b3b5c7'
         name: Deploy rocketmq
         with:
           action: "try"
