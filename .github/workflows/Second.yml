@@ -1,19 +1,40 @@
-name: Second
+name: Comment on the pull request
 
+# read-write repo token
+# access to secrets
 on:
   workflow_run:
-    workflows: ["First"]
+    workflows: ["Receive PR"]
     types:
       - completed
 
 jobs:
-  test2:
-    name: test
+  upload:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    if: >
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success'
     steps:
-      - uses: alibaba/cloud-native-test-ci-tool@v1.10.1
-        name: Deploy rocketmq
+      - name: 'Download artifact'
+        uses: actions/github-script@v3.1.0
         with:
-          action: "try"
-          ask-config: "${{ secrets.ASK_CONFIG }}"
+          script: |
+            var artifacts = await github.actions.listWorkflowRunArtifacts({
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               run_id: ${{github.event.workflow_run.id }},
+            });
+            var matchArtifact = artifacts.data.artifacts.filter((artifact) => {
+              return artifact.name == "pr"
+            })[0];
+            var download = await github.actions.downloadArtifact({
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               artifact_id: matchArtifact.id,
+               archive_format: 'zip',
+            });
+            var fs = require('fs');
+            fs.writeFileSync('${{github.workspace}}/pr.zip', Buffer.from(download.data));
+      - run: |
+            unzip pr.zip
+            cat ./NR
