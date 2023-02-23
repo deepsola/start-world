@@ -15,6 +15,7 @@ jobs:
       github.event.workflow_run.event == 'pull_request' &&
       github.event.workflow_run.conclusion == 'success'
     steps:
+      - run: sleep 30
       - name: 'Download artifact'
         uses: actions/github-script@v3.1.0
         with:
