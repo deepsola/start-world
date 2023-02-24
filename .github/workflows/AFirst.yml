@@ -1,4 +1,4 @@
-name: Receive PR
+name: PRTest1
 
 # read-only repo token
 # no access to secrets
@@ -28,7 +28,7 @@ jobs:
           path: pr2/
 
   wait-for-workflow-b:
-    needs: BSecond
+    needs: PRTest2
     runs-on: ubuntu-latest
     steps:
       - name: Wait for Workflow B
