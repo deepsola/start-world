@@ -1,0 +1,25 @@
+name: Comment on the pull request
+
+# read-write repo token
+# access to secrets
+on:
+  workflow_run:
+    workflows: ["AFirst"]
+    types:
+      - requested
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create file
+        run: |
+          echo "Hello from Workflow B" > output.txt
+          echo "Message from Workflow A: ${{ github.event.inputs.message }}" >> output.txt
+        shell: bash -l {0}
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: output.txt
