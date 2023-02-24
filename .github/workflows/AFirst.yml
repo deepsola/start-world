@@ -1,0 +1,35 @@
+name: PRTest1
+
+# read-only repo token
+# no access to secrets
+on:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:        
+      - uses: actions/checkout@v2
+
+      - name: Save PR number
+        run: |
+          mkdir -p ./pr
+          mkdir -p ./pr2
+          echo ${{ github.event.number }} > ./pr/NR
+          echo ${{ github.event.number }} > ./pr2/NR
+      - uses: actions/upload-artifact@v2
+        with:
+          name: pr
+          path: pr/
+      - uses: actions/upload-artifact@v2
+        with:
+          name: pr2
+          path: pr2/
+
+  wait-for-workflow-b:
+    needs: PRTest2
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for Workflow B
+        run: echo "Workflow B is completed."
