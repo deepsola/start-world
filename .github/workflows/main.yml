@@ -17,7 +17,7 @@ jobs:
 
   hello_github_job:
     runs-on: ubuntu-latest
-    name: A job to hello github
+    name: A job to hello world
     strategy:
       matrix:
         word: ["a", "b", "c"]
